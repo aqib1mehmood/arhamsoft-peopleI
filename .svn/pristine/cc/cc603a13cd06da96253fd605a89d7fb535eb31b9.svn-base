@@ -1,0 +1,55 @@
+<?php
+use App\Helpers\RouteHelper;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+$route_helper=new RouteHelper();
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+Route::post('/login', 'EmployeeController@login');
+Route::post('/logout','EmployeeController@logout');
+
+Route::group(['middleware' => ['auth:api','cors']], function () use($route_helper) {
+    Route::group(['prefix' => 'admin'], function() use($route_helper) {
+
+        $route_helper->callRoute('GeoTracker');
+        $route_helper->callRoute('LoanAdvance');
+        $route_helper->callRoute('PerformanceManagement');
+        $route_helper->callRoute('Leave');
+    });
+});
+Route::get('awards','Api\awards\AwardController@index');
+Route::post('awards-store','Api\awards\AwardController@store');
+Route::get('award-types', 'Api\awards\AwardTypeController@index');
+Route::get('promotions','Api\promotion\PromotionController@index');
+Route::post('promotion-store','Api\promotion\PromotionController@store');
+Route::get('promotion-types', 'Api\promotion\PromotionTypeController@index');
+Route::get('appraisal-types', 'Api\promotion\AppraisalTypeController@index');
+Route::get('promotion-reason', 'Api\promotion\PromotionReasonController@index');
+Route::get('departments', 'Api\promotion\DepartmentController@index');
+Route::get('designations', 'Api\promotion\DesignationController@index');
+Route::get('bands', 'Api\promotion\EmployeeBandController@index');
+Route::get('employess', 'Api\awards\ProllEmployeeController@index');
+Route::get('location','Api\promotion\LocationController@index');
+Route::get('employee-for-reward', 'Api\awards\ProllEmployeeController@get_employee_for_reward');
+Route::get('employee-for-promotion', 'Api\awards\ProllEmployeeController@get_employee_for_promotion');
+Route::get('employee-award', 'Api\awards\AwardController@get_award_via_employee');
+Route::get('employee-promotion', 'Api\promotion\PromotionController@get_promotion_via_employee');
+Route::get('recent-promotion', 'Api\promotion\PromotionController@get_recent_promotion');
+Route::get('recent-award', 'Api\awards\AwardController@get_recent_awards');
+Route::get('show-award', 'Api\awards\AwardController@show_award');
+Route::get('show-promotion', 'Api\promotion\PromotionController@show_promotion');
+Route::get('award-status', 'Api\awards\AwardController@award_application_status');
+

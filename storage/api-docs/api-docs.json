@@ -1,0 +1,133 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "peoplei",
+        "version": "0.1"
+    },
+    "paths": {
+        "localhost/peopleiapi/api/getResignation": {
+            "get": {
+                "operationId": "221917c244232bb1dd65c6f73f7be3d6",
+                "responses": {
+                    "200": {
+                        "description": "Its for Testing api."
+                    }
+                }
+            }
+        },
+        "localhost/peopleiapi/api/save-Resignation-application": {
+            "post": {
+                "tags": [
+                    "Submit Resignation Application"
+                ],
+                "summary": "Submit Resign Application",
+                "description": "Submit By Resignation Application",
+                "operationId": "authLogin",
+                "requestBody": {
+                    "description": "Employee Resignation Application",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "speration_reason",
+                                    "notice_period",
+                                    "last_working_date",
+                                    "documents"
+                                ],
+                                "properties": {
+                                    "speration_reason": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "due to batter opperunity"
+                                    },
+                                    "notice_period": {
+                                        "type": "Integer",
+                                        "format": "Interger",
+                                        "example": "30"
+                                    },
+                                    "last_working_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "20-2-2022"
+                                    },
+                                    "documents": {
+                                        "type": "file",
+                                        "format": "file",
+                                        "example": "application.pdf"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Form Validation Error data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "speration_reason": {
+                                            "type": "string",
+                                            "example": "The speration reason field is required."
+                                        },
+                                        "notice_period": {
+                                            "type": "string",
+                                            "example": "The notice period field is required."
+                                        },
+                                        "last_working_date": {
+                                            "type": "string",
+                                            "example": "The last working date field is required."
+                                        },
+                                        "documents": {
+                                            "type": "string",
+                                            "example": "The documents field is required."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Successfully Upload Your Resign Application."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unable to Saved Your Resignation Application."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}

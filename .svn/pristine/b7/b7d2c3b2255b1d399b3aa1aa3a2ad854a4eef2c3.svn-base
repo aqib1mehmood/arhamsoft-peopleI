@@ -1,0 +1,13 @@
+<?php return array (
+  'providers' => 
+  array (
+    0 => 'Modules\\GeoTracker\\Providers\\GeoTrackerServiceProvider',
+  ),
+  'eager' => 
+  array (
+    0 => 'Modules\\GeoTracker\\Providers\\GeoTrackerServiceProvider',
+  ),
+  'deferred' => 
+  array (
+  ),
+);

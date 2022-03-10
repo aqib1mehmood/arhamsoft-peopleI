@@ -1,0 +1,13 @@
+{
+    "name": "ExitManagement",
+    "alias": "exitmanagement",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\ExitManagement\\Providers\\ExitManagementServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

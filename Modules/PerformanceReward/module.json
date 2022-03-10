@@ -1,0 +1,13 @@
+{
+    "name": "PerformanceReward",
+    "alias": "performancereward",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\PerformanceReward\\Providers\\PerformanceRewardServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

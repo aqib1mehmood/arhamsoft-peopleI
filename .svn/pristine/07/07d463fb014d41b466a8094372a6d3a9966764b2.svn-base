@@ -1,0 +1,13 @@
+<?php return array (
+  'providers' => 
+  array (
+    0 => 'Modules\\PerformanceManagement\\Providers\\PerformanceManagementServiceProvider',
+  ),
+  'eager' => 
+  array (
+    0 => 'Modules\\PerformanceManagement\\Providers\\PerformanceManagementServiceProvider',
+  ),
+  'deferred' => 
+  array (
+  ),
+);

@@ -1,0 +1,37 @@
+<?php
+use App\Helpers\RouteHelper;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+$route_helper=new RouteHelper();
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+Route::post('/login', 'EmployeeController@login');
+Route::post('/logout','EmployeeController@logout');
+
+Route::group(['middleware' => ['auth:api','cors']], function () use($route_helper) {
+    Route::group(['prefix' => 'admin'], function() use($route_helper) {
+
+        $route_helper->callRoute('GeoTracker');
+        $route_helper->callRoute('LoanAdvance');
+        $route_helper->callRoute('PerformanceManagement');
+        $route_helper->callRoute('Leave');
+    });
+});
+
+Route::get('get_proll_client_assist', 'Api\MainController@get_proll_client_assist');
+Route::get('get_assist_via_client', 'Api\MainController@get_assist_via_client');
+Route::get('get_assist_via_client_and_employe', 'Api\MainController@get_assist_via_client_and_employe');
+Route::get('get_assist_via_filter', 'Api\MainController@get_assist_via_filter');
